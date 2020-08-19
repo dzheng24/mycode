@@ -1,0 +1,10 @@
+---
+- hosts: planet_express # target machines that will be affected by this playbook
+                  
+  tasks: # list of all the things that playbook should accomplish
+   - name: "figlet - install figlet" # write whatever you want! This will appear in the output labeling what's happening when the playbook runs
+     apt: # the name of the module that we're calling on
+       name: figlet # the package we're going to install on our hosts
+       state: present # MAKE SURE that figlet is installed/present
+     become: True # do we "becone" the user specified in hosts?
+
