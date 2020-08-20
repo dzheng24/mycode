@@ -7,17 +7,20 @@ import sys
 
 MESSAGE = "Enter yes or no:\n"
 
+
 def handle_quit(string):
     """exit the program if input is q"""
     if string == "q":
         print("Good bye")
         sys.exit(0)
 
+
 def main():
     """calling the is_moving function based on user input"""
     print("Welcome to Engineering Flowchart. Press q at anytime to exit.\n\n")
     is_moving = input("Does it move?\n")
     handle_is_moving(is_moving)
+
 
 def handle_is_moving(string):
     """function that handles user's initial response"""
@@ -32,6 +35,7 @@ def handle_is_moving(string):
         answer = input(MESSAGE)
         handle_is_moving(answer)
 
+
 def handle_should_not_moving(string):
     """function that handles user's response when it is not supposed to move"""
     handle_quit(string)
@@ -43,6 +47,7 @@ def handle_should_not_moving(string):
         answer = input(MESSAGE)
         handle_should_not_moving(answer)
 
+
 def handle_should_moving(string):
     """function that handles user's response when it is supposed to move"""
     handle_quit(string)
@@ -53,5 +58,6 @@ def handle_should_moving(string):
     else:
         answer = input(MESSAGE)
         handle_should_moving(answer)
+
 
 main()
