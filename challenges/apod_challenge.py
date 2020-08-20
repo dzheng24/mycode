@@ -8,7 +8,7 @@ quality_choice = input("Enter 1 for High Definition, 2 for Standard Definition:\
 
 # concatenates API URL
 
-api_url = f"https://api.nasa.gov/planetary/apod?date={date_choice}&api_key=t83jv32iqxQ7Uk2WdbDab7vyY5abIfB9xmm7dWUQ"
+api_url = f"https://api.nasa.gov/planetary/apod?date={date_choice}&api_key=MY_API KEY"
 
 r = requests.get(api_url)
 
