@@ -33,15 +33,32 @@ def open_prev():
             open_prev()
 
 
+def print_rows(sheet):
+    for row in sheet.iter_rows(values_only=True):
+        print(row)
+
+
 def edit_tracker(doc_name):
-    print("You are in editing mode")
+    print("You are in editing mode of file: " + doc_name)
     workbook = load_workbook(filename=doc_name)
     sheet = workbook.active
     sheet["A1"] = "Day"
     sheet["B1"] = "Money Spent"
     sheet["C1"] = "Description"
 
+    expense_date = input("What day would you like to add? Enter a number:\n")
+    expense_amount = input("Amount spent:\n")
+    expense_description = input("What did you spent it on? Enter here:\n")
+
+    new_row = sheet.max_row + 1
+    sheet.cell(column=1, row=new_row, value=expense_date)
+    sheet.cell(column=2, row=new_row, value=expense_amount)
+    sheet.cell(column=3, row=new_row, value=expense_description)
+
+    print_rows(sheet)
+
     workbook.save(filename=doc_name)
+    workbook.close()
 
 
 greeting()
