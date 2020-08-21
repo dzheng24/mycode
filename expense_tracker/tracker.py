@@ -49,6 +49,8 @@ def edit_tracker(doc_name):
     sheet["B1"] = "Money Spent"
     sheet["C1"] = "Description"
 
+    # sheet.delete_rows(idx=2, amount=3)
+
     if user_input.lower().startswith('y'):
         expense_date = input("What day would you like to add? Enter a number:\n")
         expense_amount = input("Amount spent:\n")
@@ -56,13 +58,32 @@ def edit_tracker(doc_name):
 
         new_row = sheet.max_row + 1
         sheet.cell(column=1, row=new_row, value=expense_date)
-        sheet.cell(column=2, row=new_row, value=expense_amount)
+        sheet.cell(column=2, row=new_row, value=int(expense_amount))
         sheet.cell(column=3, row=new_row, value=expense_description)
 
     print_rows(sheet)
 
     workbook.save(filename=doc_name)
     workbook.close()
+
+    display_sum(doc_name)
+
+
+def display_sum(doc_name):
+    print("here")
+    workbook = load_workbook(filename=doc_name, data_only=True)
+    sheet = workbook.active
+
+    new_row = sheet.max_row + 1
+    total_spending = []
+
+    rng = sheet['B2':'B' + str(sheet.max_row)]
+    for cell in rng:
+        total_spending.append(cell[0].value)
+
+    sheet.cell(column=2, row=new_row, value="total spending is: " + str(sum(total_spending)) + " dollars")
+
+    print_rows(sheet)
 
 
 greeting()
